@@ -1,3 +1,14 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {}
+
+#taskSubmitDiv {
+    display: grid;
+}
