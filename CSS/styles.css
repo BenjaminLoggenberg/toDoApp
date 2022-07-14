@@ -7,6 +7,14 @@ body {
     flex-direction: column;
 }
 
+.toDoEntry {
+    display: block;
+}
+
+.toDoList {
+    display: none;
+}
+
 nav {}
 
 #taskSubmitDiv {
