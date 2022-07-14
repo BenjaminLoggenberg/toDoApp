@@ -1,3 +1,5 @@
+//EVENT LISTENERS
+
 const addToDoTabHandler = () => {
     let addToDoElements = document.querySelectorAll(".toDoEntry");
     addToDoElements.forEach(element => {
