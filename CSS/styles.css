@@ -3,20 +3,35 @@
 }
 
 body {
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
 }
 
+header {
+    background-color: yellow;
+    border-style: solid;
+    border
+}
+
+nav {
+    background-color: green;
+    border-style: solid;
+}
+
 .toDoEntry {
     display: block;
+    border-style: solid;
 }
 
 .toDoList {
     display: none;
 }
 
-nav {}
+.motivationQuote {
+    border-style: solid;
+}
 
-#taskSubmitDiv {
-    display: grid;
+form {
+    border-style: solid;
 }

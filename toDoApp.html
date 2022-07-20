@@ -17,43 +17,57 @@
 
 <body>
     <header>
-        <h1>To Do List App:</h1>
+        <h1 class="m-2 p-1">To Do List App:</h1>
 
     </header>
     <main>
 
         <nav>
-            <h2> This app is here to help you be SUPER productive and get sh*t done!</h2>
+            <h2 class="m-2 p-1"> This app is here to help you be SUPER productive and get sh*t done!</h2>
             <button class="toDoList" id="viewToDoTabButton">Add A Task</button>
-            <button class="toDoEntry" id="addToDoTabButton">View To-Do's</button>
+            <button class="toDoEntry m-3" id="addToDoTabButton">View To-Do's</button>
         </nav>
         <article>
         </article>
         <br>
-        <div id="taskSubmitDiv" class="toDoEntry">
-            Write down your daily to-do's. NO CHEATING!
-            <form id="taskSubmitForm">
-                <label for="task1">Enter Task Here:</label>
-                <input type="text" id="task1" placeholder="Task Name">
-                <br>
-                <label for="taskDescription">Enter Task Description Here:</label>
-                <input type="text" id="taskDescription" placeholder="Task Description">
-                <br>
-                <label for="dueDay">Enter Due Day Here:</label>
-                <input type="datetime-local" id="dueDay">
-                <br>
-                <button>Submit</button>
-            </form>
+        <div id="taskSubmitDiv" class="toDoEntry container-fluid">
+            <div class="row justify-content-start">
+                <div class="col-8">
+                    <h3 class="pt-2 text-center">Write down your daily to-do's. NO CHEATING!</h2>
+
+                        <form id="taskSubmitForm" class="m-4 p-4 text-start">
+                            <label for="task1" class="p-1">Enter Task Here:</label>
+                            <input type="text" id="task1" placeholder="Task Name" class="m-1">
+                            <br>
+                            <label for="taskDescription" class="p-1">Enter Task Description Here:</label>
+                            <input type="text" id="taskDescription" placeholder="Task Description" class="m-1">
+                            <br>
+                            <label for="dueDay" class="p-1">Enter Due Day Here:</label>
+                            <input type="datetime-local" id="dueDay" class="m-1">
+                            <br>
+                            <button class="m-2">Submit</button>
+                        </form>
+
+                </div>
+                <div class="motivationQuote col-4">
+                    <h3 class="pt-2 text-center"> Motivational quote here</h3>
+                </div>
+            </div>
+
         </div>
-        <div class="toDoList">
-            <h2>Today's date</h2>
-            <h2>Today's tasks:</h2>
-            <ul>
-                <li>Task One</li>
-                <li>Task Two</li>
-                <li>Task Three</li>
-                <li>Task Four</li>
-            </ul>
+        <div class="toDoList grid text-center">
+            <div class="g-col-3 g-col-md-4">
+                <h2>Today's date</h2>
+                <h2>Today's tasks:</h2>
+            </div>
+            <div class="">
+                <ul>
+                    <li class="">Task One</li>
+                    <li class="">Task Two</li>
+                    <li class="g-col-3 g-col-md-4">Task Three</li>
+                    <li class="g-col-3 g-col-md-4">Task Four</li>
+                </ul>
+            </div>
         </div>
     </main>
     <footer></footer>
