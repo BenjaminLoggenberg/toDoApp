@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 
 <body>
@@ -21,15 +21,17 @@
 
     </header>
     <main>
-
+        <!-- top nav bar, remains static regardless of switching views with button-->
         <nav>
-            <h2 class="m-2 p-1"> This app is here to help you be SUPER productive and get sh*t done!</h2>
+            <h2 class="m-2 p-1"> This app is here to help you be SUPER productive and get stuff done!</h2>
             <button class="toDoList m-3" id="viewToDoTabButton">Add A Task</button>
             <button class="toDoEntry m-3" id="addToDoTabButton">View To-Do's</button>
         </nav>
         <article>
         </article>
         <br>
+        <!-- Submit a task using the form below-->
+
         <div id="taskSubmitDiv" class="toDoEntry container-fluid">
             <div class="row justify-content-start">
                 <div class="col-8">
@@ -37,7 +39,7 @@
 
                         <form id="taskSubmitForm" class="m-4 p-4 text-start">
                             <label for="task1" class="p-1">Enter Task:</label>
-                            <input type="text" id="task1" placeholder="Task Name" class="m-1">
+                            <input type="text" id="taskName" placeholder="Task Name" class="m-1">
                             <br>
                             <label for="taskDescription" class="p-1">Enter Task Description:</label>
                             <input type="text" id="taskDescription" placeholder="Task Description" class="m-1">
@@ -45,10 +47,12 @@
                             <label for="dueDay" class="p-1">Enter Due Day:</label>
                             <input type="datetime-local" id="dueDay" class="m-1">
                             <br>
-                            <button class="m-2">Submit</button>
+                            <!-- currently using onclick to submit the above data-->
+                            <button class="m-2" id="submitInput" onclick="createTask()">Submit</button>
                         </form>
 
                 </div>
+                <!-- might delete the motivational quote part lol-->
                 <div class="motivationQuote col-4">
                     <h3 class="pt-2 text-center"> Motivational quote here</h3>
                 </div>
@@ -73,59 +77,10 @@
                                             <div class="d-flex">
                                                 <input class="form-check-input me-2" type="checkbox" value=""
                                                     aria-label="..." />
-                                                Cras justo odio
                                             </div>
                                             <span class="col float-right">day</span>
                                         </li>
-                                        <li
-                                            class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
-                                                    aria-label="..." checked />
-                                                <s>Dapibus ac facilisis in</s>
-                                            </div>
-                                            <span class="col float-right">day</span>
 
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
-                                                    aria-label="..." />
-                                                Morbi leo risus
-                                            </div>
-                                            <span class="col float-right">day</span>
-
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
-                                                    aria-label="..." />
-                                                Porta ac consectetur ac
-                                            </div>
-                                            <span class="col float-right">day</span>
-
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-0">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
-                                                    aria-label="..." checked />
-                                                Vestibulum at eros
-                                            </div>
-                                            <span class="col float-right">day</span>
-
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
-                                                    aria-label="..." />
-                                                Morbi leo risus
-                                            </div>
-                                            <span class="col float-right">day</span>
-                                        </li>
                                     </ul>
 
                                 </div>
