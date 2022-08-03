@@ -17,26 +17,49 @@ let tasks = [];
 //     return taskInput;
 // }
 
-//THIS OBJECT CONSTRUCTOR FUNCTION IS AN ATTEMPT TO CAPTURE INPUT DATA
-function Task(taskname, taskdescription, taskdueday) {
-    this._taskname = taskname;
-    this._taskdescription = taskdescription;
-    this._taskdueday = taskdueday;
+//THIS CLASS IS AN ATTEMPT TO CAPTURE INPUT DATA
+
+
+class Task {
+    constructor(taskname, taskdescription, taskdueday) {
+        this._taskname = taskname;
+        this._taskdescription = taskdescription;
+        this._taskdueday = taskdueday;
+    }
+    get taskname() {
+        return this._taskname;
+    }
+    get taskdescription() {
+        return this._taskdescription;
+    }
+    get taskdueday() {
+        return this._taskdueday;
+    }
 
 }
+
+
 //I was unsure if I could capture the value of the input here or place the below variables at the top of my code
 //Is it better to use querySelector or getElementBy ID to capture string values?
-const taskInput = document.getElementById("taskName").value;
-const taskDescriptionInput = document.querySelector("#taskDescription").value;
-const dueDayInput = document.querySelector("#dueDay").value;
-
-
-//Is it possible to create new Object within a function like the one below?
 function createTask(task1) {
-    task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
-    return task1;
+    const taskInput = document.getElementById("taskName").value;
+    const taskDescriptionInput = document.querySelector("#taskDescription").value;
+    const dueDayInput = document.querySelector("#dueDay").value;
+
+    return new Task(taskInput, taskDescriptionInput, dueDayInput);
+
+
 }
 
+tasks.push(createTask());
+
+document.getElementById('submitInput').onclick = function () {
+    document.getElementById('task1Dom').innerHTML = tasks.taskInput;
+}
+
+//Is it possible to create new Object within a function like the one below?
+
+//let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
 //or should you call it straight like this: 
 //let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
 
