@@ -37,8 +37,8 @@
                 <div class="col-8">
                     <h3 class="pt-2 text-center">Write down your daily to-do's. NO CHEATING!</h2>
 
-                        <form id="taskSubmitForm" class="m-4 p-4 text-start">
-                            <label for="task1" class="p-1">Enter Task:</label>
+                        <form onsubmit="createTask(event)" id="taskSubmitForm" class="m-4 p-4 text-start">
+                            <label for="taskName" class="p-1">Enter Task:</label>
                             <input type="text" id="taskName" placeholder="Task Name" class="m-1">
                             <br>
                             <label for="taskDescription" class="p-1">Enter Task Description:</label>
@@ -48,7 +48,7 @@
                             <input type="datetime-local" id="dueDay" class="m-1">
                             <br>
                             <!-- currently using onclick to submit the above data-->
-                            <button class="m-2" id="submitInput" onclick="createTask()">Submit</button>
+                            <button type="submit" class="m-2" id="submitInput">Submit</button>
                         </form>
 
                 </div>
@@ -80,7 +80,7 @@ I know you can use appendChild etc. but it still feels trickier with a form like
                                     <ul class="list-group mb-0">
                                         <li
                                             class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex">
+                                            <div class="d-flex" id="task1Dom">
                                                 <input class="form-check-input me-2" type="checkbox" value=""
                                                     aria-label="..." />
                                             </div>

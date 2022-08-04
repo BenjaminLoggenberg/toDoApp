@@ -35,27 +35,27 @@ class Task {
     get taskdueday() {
         return this._taskdueday;
     }
-
 }
 
 
 //I was unsure if I could capture the value of the input here or place the below variables at the top of my code
 //Is it better to use querySelector or getElementBy ID to capture string values?
-function createTask(task1) {
+function createTask(event) {
+    event.preventDefault();
+    console.log('runningCreateTask', event)
     const taskInput = document.getElementById("taskName").value;
-    const taskDescriptionInput = document.querySelector("#taskDescription").value;
-    const dueDayInput = document.querySelector("#dueDay").value;
-
-    return new Task(taskInput, taskDescriptionInput, dueDayInput);
-
-
+    const taskDescriptionInput = document.getElementById("taskDescription").value;
+    const dueDayInput = document.getElementById("dueDay").value;
+    let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
+    tasks.push(task1);
 }
 
-tasks.push(createTask());
-
-document.getElementById('submitInput').onclick = function () {
-    document.getElementById('task1Dom').innerHTML = tasks.taskInput;
-}
+// document.addEventListener('DOMContentLoaded', () = > {
+//     document.getElementById('submitInput').addEventListener('submit', createTask)
+// })
+//document.getElementById('submitInput').onclick = function () {
+//  document.getElementById('task1Dom').innerHTML = tasks.taskInput;
+//}
 
 //Is it possible to create new Object within a function like the one below?
 
@@ -107,4 +107,5 @@ const viewToDoTabHandler = () => {
 
 
 }
+
 viewToDoTabButton.addEventListener("click", viewToDoTabHandler);
