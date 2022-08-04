@@ -17,8 +17,7 @@ let tasks = [];
 //     return taskInput;
 // }
 
-//THIS CLASS IS AN ATTEMPT TO CAPTURE INPUT DATA
-
+//THIS CLASS IS USED TO CAPTURE THE INPUT DATA
 
 class Task {
     constructor(taskname, taskdescription, taskdueday) {
@@ -37,9 +36,7 @@ class Task {
     }
 }
 
-
-//I was unsure if I could capture the value of the input here or place the below variables at the top of my code
-//Is it better to use querySelector or getElementBy ID to capture string values?
+//THIS FUNCTION IS USED TO CAPTURE THE INPUT DATA AND PUSH IT TO THE ARRAY
 function createTask(event) {
     event.preventDefault();
     console.log('runningCreateTask', event)
@@ -48,25 +45,24 @@ function createTask(event) {
     const dueDayInput = document.getElementById("dueDay").value;
     let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
     tasks.push(task1);
+    console.log("tasks are now:", tasks)
+    domPrint();
 }
 
-// document.addEventListener('DOMContentLoaded', () = > {
-//     document.getElementById('submitInput').addEventListener('submit', createTask)
-// })
-//document.getElementById('submitInput').onclick = function () {
-//  document.getElementById('task1Dom').innerHTML = tasks.taskInput;
-//}
+//Option 1
+for (let x = 0; x < tasks.length; x++) {
+    let domUl = document.getElementById("taskUl");
+    let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname[x];
+    domUl.appendChild(taskLi);
+}
 
-//Is it possible to create new Object within a function like the one below?
-
-//let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
-//or should you call it straight like this: 
-//let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
-
-
-// tasks.push(task1);
-//I keep getting errors that taskInput is already defined or it can't get the value it seems?
-
+//Option 2
+function domPrint() {
+    let domUl = document.getElementById("taskUl");
+    let taskLi = document.createElement("li");
+    taskLi.class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname;
+    domUl.appendChild(taskLi);
+}
 
 //EVENT LISTENERS
 

@@ -21,7 +21,7 @@
 
     </header>
     <main>
-        <!-- top nav bar, remains static regardless of switching views with button-->
+        <!-- top nav bar, with switching views with button-->
         <nav>
             <h2 class="m-2 p-1"> This app is here to help you be SUPER productive and get stuff done!</h2>
             <button class="toDoList m-3" id="viewToDoTabButton">Add A Task</button>
@@ -77,11 +77,11 @@ I know you can use appendChild etc. but it still feels trickier with a form like
 
                                     <h4 class="mb-3">Awesome Todo List</h4>
 
-                                    <ul class="list-group mb-0">
+                                    <ul class="list-group mb-0" id="taskUl">
                                         <li
                                             class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                                             <div class="d-flex" id="task1Dom">
-                                                <input class="form-check-input me-2" type="checkbox" value=""
+                                                <input class="form-check-input me-2" type="checkbox" value="awe"
                                                     aria-label="..." />
                                             </div>
                                             <span class="col float-right">day</span>
