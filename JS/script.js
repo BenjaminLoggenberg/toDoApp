@@ -120,7 +120,7 @@ function createTask(event) {
     domDiv.appendChild(taskActionsEl);
     document.getElementById("taskName").value = "";
 
-
+    //Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
     taskEditEl.addEventListener('click', () => {
         if (taskEditEl.innerText.toLowerCase() == "edit") {
             taskNameText.removeAttribute("readonly");
@@ -136,9 +136,7 @@ function createTask(event) {
     });
     taskDeleteEl.addEventListener('click', () => {
         taskList.removeChild(domDiv);
-    })
-
-
+    });
 }
 
 
