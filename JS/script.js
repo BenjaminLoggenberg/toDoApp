@@ -34,7 +34,6 @@ class Task {
 
 //THIS FUNCTION IS USED TO CAPTURE THE INPUT DATA AND PUSH IT TO THE ARRAY
 function createTask(event) {
-
     //event preventdefault to retain data without losing it
     event.preventDefault();
 
@@ -61,7 +60,6 @@ function createTask(event) {
     let domDivContent = document.createElement("div");
     domDivContent.classList.add("content");
 
-
     let taskNameText = document.createElement("input");
     taskNameText.classList.add("text");
     taskNameText.type = "text";
@@ -76,8 +74,6 @@ function createTask(event) {
 
 
     //adding due date values 
-
-
     let domDivContent2 = document.createElement("div");
     domDivContent2.classList.add("content");
 
@@ -89,8 +85,6 @@ function createTask(event) {
     taskDueDateText.setAttribute("readonly", "readonly");
 
     //append children
-
-
     domDivContent2.appendChild(taskDueDateText);
     domDiv.appendChild(domDivContent2);
 
@@ -142,11 +136,7 @@ function createTask(event) {
     });
 }
 
-
-
-
 //EVENT LISTENERS
-
 //below event listeners are to change the screen view
 const addToDoTabHandler = () => {
     let addToDoElements = document.querySelectorAll(".toDoEntry");
@@ -154,15 +144,10 @@ const addToDoTabHandler = () => {
         element.style.display = "none";
 
     });
-
-
     let toDoListElements = document.querySelectorAll(".toDoList");
     toDoListElements.forEach(element => {
         element.style.display = "block";
-
     });
-
-
 }
 addToDoTabButton.addEventListener("click", addToDoTabHandler);
 
@@ -174,15 +159,10 @@ const viewToDoTabHandler = () => {
         element.style.display = "block";
 
     });
-
-
     let toDoListElements = document.querySelectorAll(".toDoList");
     toDoListElements.forEach(element => {
         element.style.display = "none";
 
     });
-
-
 }
-
 viewToDoTabButton.addEventListener("click", viewToDoTabHandler);
