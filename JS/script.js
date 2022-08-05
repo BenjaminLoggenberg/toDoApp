@@ -107,11 +107,14 @@ function createTask(event) {
     taskEditEl.innerHTML = "edit";
 
     let taskDeleteEl = document.createElement("button");
-    taskEditEl.classList.add("delete");
+    taskDeleteEl.classList.add("delete");
     taskDeleteEl.innerHTML = "delete";
-
+    //Please help me get checkbox outside of task?
     let taskCheckEl = document.createElement("input");
+    taskCheckEl.classList.add("checkbox");
     taskCheckEl.type = "checkbox";
+    taskCheckEl.name = "checkbox";
+    taskCheckEl.value = "checkbox";
 
     taskActionsEl.appendChild(taskEditEl);
     taskActionsEl.appendChild(taskDeleteEl);
