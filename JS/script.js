@@ -121,44 +121,29 @@ function createTask(event) {
     document.getElementById("taskName").value = "";
 
 
-    //console.log taskname before empty
-    //console.log("taskName is now", document.getElementById("taskName").value);
+    taskEditEl.addEventListener('click', () => {
+        if (taskEditEl.innerText.toLowerCase() == "edit") {
+            taskNameText.removeAttribute("readonly");
+            taskNameText.focus();
+            taskDueDateText.removeAttribute("readonly");
+            taskDueDateText.focus();
 
-    //console.log after empty
-    // console.log("taskName is now", document.getElementById("taskName").value);
+            taskEditEl.innerHTML = "Save";
+        } else {
 
-    //Placeholder to run domPrint() should option 2 be correct
-    //  domPrint();
+            taskNameText.setAttribute("readonly", "readonly");
+            taskDueDateText.setAttribute("readonly", "readonly");
+            taskEditEl.innerHTML = "Edit";
+
+        }
+    })
+
+
+
 }
 
 
 
-
-//Potential create list in DOM
-
-// let domTaskList = document.getElementById("taskList");
-// let domLi = document.createElement("li");
-// let taskNameText = document.createTextNode(tasks.taskname);
-// domLi.appendChild(taskNameText);
-// domTaskList.appendChild(domUl);
-
-
-
-
-
-//Option 1 for 
-// for (let x = 0; x < tasks.length; x++) {
-//     let domUl = document.getElementById("taskUl");
-//     let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname[x];
-//     domUl.appendChild(taskLi);
-// }
-
-//Option 2
-// function domPrint() {
-//     let domUl = document.getElementById("taskUl");
-//     let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname;
-//     domUl.appendChild(taskLi);
-// }
 
 //EVENT LISTENERS
 
