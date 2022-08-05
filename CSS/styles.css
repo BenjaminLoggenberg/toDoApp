@@ -111,6 +111,46 @@ button {
     opacity: 0.6;
 }
 
+#viewToDoTabButton {
+    color: var(--pink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    /*cool trick I learnt to make gradient colors from left to right*/
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#viewToDoTabButton:hover {
+    opacity: 0.8;
+}
+
+#viewToDoTabButton:active {
+    opacity: 0.6;
+}
+
+#addToDoTabButton {
+    color: var(--pink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    /*cool trick I learnt to make gradient colors from left to right*/
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#addToDoTabButton:hover {
+    opacity: 0.8;
+}
+
+#addToDoTabButton:active {
+    opacity: 0.6;
+}
+
 main {
     flex: 1 1 0%;
     padding: 2rem 1rem;

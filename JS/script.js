@@ -127,17 +127,16 @@ function createTask(event) {
             taskNameText.focus();
             taskDueDateText.removeAttribute("readonly");
             taskDueDateText.focus();
-
             taskEditEl.innerHTML = "Save";
         } else {
-
             taskNameText.setAttribute("readonly", "readonly");
             taskDueDateText.setAttribute("readonly", "readonly");
             taskEditEl.innerHTML = "Edit";
-
         }
+    });
+    taskDeleteEl.addEventListener('click', () => {
+        taskList.removeChild(domDiv);
     })
-
 
 
 }
