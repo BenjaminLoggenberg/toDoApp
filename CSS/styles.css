@@ -71,6 +71,20 @@ button {
     color: var(--gray);
 }
 
+#dueDay {
+    flex: 1 1 0%;
+    background-color: var(--darker);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: var(--light);
+    font-size: 1.25rem;
+}
+
+#dueDay::placeholder {
+    color: var(--gray);
+}
+
 #submitInput {
     color: var(--pink);
     font-size: 1.25rem;
@@ -97,6 +111,10 @@ main {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+}
+
+#taskList {
+    display: grid;
 }
 
 #taskList .task {
@@ -158,7 +176,6 @@ nav {
 
 .toDoEntry {
     display: block;
-    border-style: solid;
 }
 
 .toDoList {

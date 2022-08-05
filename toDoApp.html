@@ -17,13 +17,13 @@
 
 <body>
     <header>
-        <h1 class="m-2 p-1">To Do List App:</h1>
+        <h1>To Do List App:</h1>
 
     </header>
     <main>
         <!-- top nav bar, with switching views with button-->
         <nav>
-            <h2 class="m-2 p-1"> This app is here to help you be SUPER productive and get stuff done!</h2>
+            <h2> This app is here to help you be SUPER productive and get stuff done!</h2>
             <button class="toDoList m-3" id="viewToDoTabButton">Add A Task</button>
             <button class="toDoEntry m-3" id="addToDoTabButton">View To-Do's</button>
         </nav>
@@ -37,12 +37,12 @@
             <div class="col-8">
                 <h2 class="pt-2 text-center">Write down your daily to-do's. NO CHEATING!</h2>
 
-                <form onsubmit="createTask(event)" id="taskSubmitForm" class="m-4 p-4 text-start">
-                    <label for="taskName" class="p-1">Enter Task:</label>
+                <form onsubmit="createTask(event)" id="taskSubmitForm" class="p-5 text-start">
+                    <label for="taskName" class="p-1"></label>
                     <input type="text" id="taskName" placeholder="Task Name" class="m-1">
                     <br>
-                    <label for="dueDay" class="p-1">Enter Due Day:</label>
-                    <input type="datetime-local" id="dueDay" class="m-1">
+                    <label for="dueDay" class="p-1"></label>
+                    <input type="datetime" id="dueDay" class="m-1" placeholder="Due Day">
                     <br>
 
                     <input type="submit" class="m-2" id="submitInput"></input>
@@ -58,19 +58,19 @@
             <h2>Tasks</h2>
             <div id="taskList">
 
-                <div class="task">
+                <!--  <div class="task">
                     <div class="content">
                         <input type="text" class="text" value="My shiny task" readonly>
 
                     </div>
-                    <!--Buttons to edit and delete task-->
+                    <!--Buttons to edit and delete task->
                     <div class="actions">
                         <input class="tickTask" type="checkbox">
                         <button class="edit">EDIT</button>
                         <button class="delete">DELETE</button>
                     </div>
                 </div>
-
+            -->
 
             </div>
         </section>

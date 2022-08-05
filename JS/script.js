@@ -41,51 +41,97 @@ function createTask(event) {
     //function section to capture input data and push to tasks array
     console.log('runningCreateTask', event)
     const taskInput = document.getElementById("taskName").value;
+
+    //conditional
+    if (!taskInput) {
+        alert("Please fill out the task!");
+        return;
+    }
+
     const dueDayInput = document.getElementById("dueDay").value;
+
     let task1 = new Task(taskInput, dueDayInput);
     tasks.push(task1);
     console.log("tasks are now:", tasks)
 
     //section to take data in array and push to DOM
-    let domLi = document.createElement("li");
-    //says undefined, should I print from the array? or should I print from element.value
-    let taskNameText = document.createTextNode(task1._taskname);
-    domLi.appendChild(taskNameText);
+    let domDiv = document.createElement("div");
+    domDiv.classList.add("task");
+
+    let domDivContent = document.createElement("div");
+    domDivContent.classList.add("content");
 
 
-    //adding task description
+    let taskNameText = document.createElement("input");
+    taskNameText.classList.add("text");
+    taskNameText.type = "text";
+    taskNameText.value = task1._taskname;
+    taskNameText.setAttribute("readonly", "readonly");
 
-    //adding task date
+    //append children
+    document.getElementById("taskList").appendChild(domDiv);
+
+    domDiv.appendChild(domDivContent);
+    domDivContent.appendChild(taskNameText);
 
 
+    //adding due date values 
 
 
+    let domDivContent2 = document.createElement("div");
+    domDivContent2.classList.add("content");
 
-    document.getElementById("taskList").appendChild(domLi);
-    //console.log taskname before empty
-    console.log("taskName is now", document.getElementById("taskName").value);
+
+    let taskDueDateText = document.createElement("input");
+    taskDueDateText.classList.add("text");
+    taskDueDateText.type = "text";
+    taskDueDateText.value = task1._taskdueday;
+    taskDueDateText.setAttribute("readonly", "readonly");
+
+    //append children
+
+
+    domDiv.appendChild(domDivContent2);
+    domDivContent.appendChild(taskDueDateText);
+
+
+    //adding task buttons
+
+    let taskActionsEl = document.createElement("div");
+    taskActionsEl.classList.add("actions");
+
+    let taskEditEl = document.createElement("button");
+    taskEditEl.classList.add("edit");
+    taskEditEl.innerHTML = "edit";
+
+    let taskDeleteEl = document.createElement("button");
+    taskEditEl.classList.add("delete");
+    taskDeleteEl.innerHTML = "delete";
+
+    let taskCheckEl = document.createElement("input");
+    taskCheckEl.type = "checkbox";
+
+    taskActionsEl.appendChild(taskEditEl);
+    taskActionsEl.appendChild(taskDeleteEl);
+    taskActionsEl.appendChild(taskCheckEl);
+    domDiv.appendChild(domDivContent);
+
+    domDiv.appendChild(taskActionsEl);
     document.getElementById("taskName").value = "";
 
+
+    //console.log taskname before empty
+    //console.log("taskName is now", document.getElementById("taskName").value);
+
     //console.log after empty
-    console.log("taskName is now", document.getElementById("taskName").value);
+    // console.log("taskName is now", document.getElementById("taskName").value);
 
     //Placeholder to run domPrint() should option 2 be correct
     //  domPrint();
 }
 
 
-function domPrint() {
-    let domDiv = document.createElement("div");
-    let taskNameText = document.createTextNode(tasks.taskname);
-    domDiv.appendChild(taskNameText);
-    document.getElementById("taskList").appendChild(domDiv);
 
-    document.getElementById("taskName").value = "";
-    console.log("taskName is now", document.getElementById("taskName"));
-
-
-
-}
 
 //Potential create list in DOM
 
