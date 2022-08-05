@@ -20,16 +20,12 @@ let tasks = [];
 //THIS CLASS IS USED TO CAPTURE THE INPUT DATA
 
 class Task {
-    constructor(taskname, taskdescription, taskdueday) {
+    constructor(taskname, taskdueday) {
         this._taskname = taskname;
-        this._taskdescription = taskdescription;
         this._taskdueday = taskdueday;
     }
     get taskname() {
         return this._taskname;
-    }
-    get taskdescription() {
-        return this._taskdescription;
     }
     get taskdueday() {
         return this._taskdueday;
@@ -45,9 +41,8 @@ function createTask(event) {
     //function section to capture input data and push to tasks array
     console.log('runningCreateTask', event)
     const taskInput = document.getElementById("taskName").value;
-    const taskDescriptionInput = document.getElementById("taskDescription").value;
     const dueDayInput = document.getElementById("dueDay").value;
-    let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
+    let task1 = new Task(taskInput, dueDayInput);
     tasks.push(task1);
     console.log("tasks are now:", tasks)
 
@@ -56,6 +51,16 @@ function createTask(event) {
     //says undefined, should I print from the array? or should I print from element.value
     let taskNameText = document.createTextNode(task1._taskname);
     domLi.appendChild(taskNameText);
+
+
+    //adding task description
+
+    //adding task date
+
+
+
+
+
     document.getElementById("taskList").appendChild(domLi);
     //console.log taskname before empty
     console.log("taskName is now", document.getElementById("taskName").value);
@@ -70,10 +75,10 @@ function createTask(event) {
 
 
 function domPrint() {
-    let domLi = document.createElement("li");
+    let domDiv = document.createElement("div");
     let taskNameText = document.createTextNode(tasks.taskname);
-    domLi.appendChild(taskNameText);
-    document.getElementById("taskList").appendChild(domLi);
+    domDiv.appendChild(taskNameText);
+    document.getElementById("taskList").appendChild(domDiv);
 
     document.getElementById("taskName").value = "";
     console.log("taskName is now", document.getElementById("taskName"));
