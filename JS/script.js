@@ -91,8 +91,10 @@ function createTask(event) {
     //append children
 
 
+    domDivContent2.appendChild(taskDueDateText);
     domDiv.appendChild(domDivContent2);
-    domDivContent.appendChild(taskDueDateText);
+
+    document.getElementById("dueDay").value = "";
 
 
     //adding task buttons
@@ -114,7 +116,6 @@ function createTask(event) {
     taskActionsEl.appendChild(taskEditEl);
     taskActionsEl.appendChild(taskDeleteEl);
     taskActionsEl.appendChild(taskCheckEl);
-    domDiv.appendChild(domDivContent);
 
     domDiv.appendChild(taskActionsEl);
     document.getElementById("taskName").value = "";
