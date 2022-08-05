@@ -38,7 +38,11 @@ class Task {
 
 //THIS FUNCTION IS USED TO CAPTURE THE INPUT DATA AND PUSH IT TO THE ARRAY
 function createTask(event) {
+
+    //event preventdefault to retain data without losing it
     event.preventDefault();
+
+    //function section to capture input data and push to tasks array
     console.log('runningCreateTask', event)
     const taskInput = document.getElementById("taskName").value;
     const taskDescriptionInput = document.getElementById("taskDescription").value;
@@ -46,23 +50,63 @@ function createTask(event) {
     let task1 = new Task(taskInput, taskDescriptionInput, dueDayInput);
     tasks.push(task1);
     console.log("tasks are now:", tasks)
-    domPrint();
+
+    //section to take data in array and push to DOM
+    let domLi = document.createElement("li");
+    //says undefined, should I print from the array? or should I print from element.value
+    let taskNameText = document.createTextNode(task1._taskname);
+    domLi.appendChild(taskNameText);
+    document.getElementById("taskList").appendChild(domLi);
+    //console.log taskname before empty
+    console.log("taskName is now", document.getElementById("taskName").value);
+    document.getElementById("taskName").value = "";
+
+    //console.log after empty
+    console.log("taskName is now", document.getElementById("taskName").value);
+
+    //Placeholder to run domPrint() should option 2 be correct
+    //  domPrint();
 }
 
-//Option 1
-for (let x = 0; x < tasks.length; x++) {
-    let domUl = document.getElementById("taskUl");
-    let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname[x];
-    domUl.appendChild(taskLi);
+
+function domPrint() {
+    let domLi = document.createElement("li");
+    let taskNameText = document.createTextNode(tasks.taskname);
+    domLi.appendChild(taskNameText);
+    document.getElementById("taskList").appendChild(domLi);
+
+    document.getElementById("taskName").value = "";
+    console.log("taskName is now", document.getElementById("taskName"));
+
+
+
 }
+
+//Potential create list in DOM
+
+// let domTaskList = document.getElementById("taskList");
+// let domLi = document.createElement("li");
+// let taskNameText = document.createTextNode(tasks.taskname);
+// domLi.appendChild(taskNameText);
+// domTaskList.appendChild(domUl);
+
+
+
+
+
+//Option 1 for 
+// for (let x = 0; x < tasks.length; x++) {
+//     let domUl = document.getElementById("taskUl");
+//     let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname[x];
+//     domUl.appendChild(taskLi);
+// }
 
 //Option 2
-function domPrint() {
-    let domUl = document.getElementById("taskUl");
-    let taskLi = document.createElement("li");
-    taskLi.class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname;
-    domUl.appendChild(taskLi);
-}
+// function domPrint() {
+//     let domUl = document.getElementById("taskUl");
+//     let taskLi = document.createElement("li").class("list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2").innerHTML = tasks.taskname;
+//     domUl.appendChild(taskLi);
+// }
 
 //EVENT LISTENERS
 
