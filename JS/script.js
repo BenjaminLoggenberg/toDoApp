@@ -53,6 +53,9 @@ function createTask(event) {
     tasks.push(task1);
     console.log("tasks are now:", tasks)
 
+    console.log("tasks after sort:", tasks);
+
+
     //section to take data in array and push to DOM
     let domDiv = document.createElement("div");
     domDiv.classList.add("task");
@@ -134,7 +137,24 @@ function createTask(event) {
     taskDeleteEl.addEventListener('click', () => {
         taskList.removeChild(domDiv);
     });
+    //Sort array alphabetically
+    //sorting
+    // tasks.sort((a, b) => {
+    //     const taskA = a.taskname.toUpperCase(); // ignore upper and lowercase
+    //     const taskB = b.taskname.toUpperCase(); // ignore upper and lowercase
+    //     if (taskA < taskB) {
+    //         return -1;
+    //     }
+    //     else if (taskA > taskB) {
+    //         return 1;
+    //     }
+
+    //     // names must be equal
+    //     return 0;
+    // });
+
 }
+
 
 //EVENT LISTENERS
 //below event listeners are to change the screen view
