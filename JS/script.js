@@ -154,7 +154,7 @@ function createTask(event) {
         taskList.removeChild(domDiv);
     });
 
-
+    //trying to strikethrough when checkbox is clicked (another alternative attempt to css)
     taskCheckEl.addEventListener('click', () => {
         taskNameText.innerHTML = "<s>" + task1._taskname + "</s>";
     })
