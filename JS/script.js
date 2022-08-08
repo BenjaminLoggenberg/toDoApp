@@ -150,13 +150,35 @@ function createTask(event) {
             taskEditEl.innerHTML = "Edit";
         }
     });
+
+
+
     taskDeleteEl.addEventListener('click', () => {
         taskList.removeChild(domDiv);
+        let result = tasks.filter(deleteTask => tasks != Task);
+
+        console.log("tasks after filter", result);
+
     });
 
-    //trying to strikethrough when checkbox is clicked (another alternative attempt to css)
+
+
+
+    //for loop to show how many tasks have been entered
+    for (let x = 0; x < tasks.length; x++) {
+        const element = tasks.length;
+        console.log("Amount of tasks entered:", element)
+    }
+
+    //Strikethrough text when checkbox is clicked (Completed task)
     taskCheckEl.addEventListener('click', () => {
-        taskNameText.innerHTML = "<s>" + task1._taskname + "</s>";
+        if (taskCheckEl.checked == true) {
+            domDivContent.style.textDecoration = "line-through";
+            domDivContent2.style.textDecoration = "line-through";
+        } else {
+            domDivContent.style.textDecoration = "none";
+            domDivContent2.style.textDecoration = "none";
+        }
     })
 }
 
@@ -191,3 +213,5 @@ const viewToDoTabHandler = () => {
     });
 }
 viewToDoTabButton.addEventListener("click", viewToDoTabHandler);
+
+
