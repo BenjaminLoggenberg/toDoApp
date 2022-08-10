@@ -256,12 +256,3 @@ form {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
-/**why is this not working?**/
-.checkbox:checked+.task .content {
-    text-decoration: line-through;
-}
-
-input[type=checkbox]:checked~.task .actions {
-    text-decoration: line-through;
-}
