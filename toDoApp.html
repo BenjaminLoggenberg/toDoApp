@@ -18,8 +18,8 @@
 <body>
     <header class="mt-1">
         <h1>To Do List App:</h1>
-
     </header>
+
     <main>
         <!-- top nav bar, with switching views with button-->
         <nav>
@@ -31,7 +31,6 @@
         </article>
         <br>
         <!-- Submit a task using the form below-->
-
         <div id="taskSubmitDiv" class="toDoEntry container-fluid">
 
             <div class="col-8">
@@ -47,10 +46,7 @@
 
                     <input type="submit" class="m-2" id="submitInput"></input>
                 </form>
-
             </div>
-
-
         </div>
 
         <!--tasks here-->
@@ -61,7 +57,6 @@
                 <h2>Actions</h2>
             </div>
             <div id="taskList">
-
                 <!--  <div class="task">
                     <div class="content">
                         <input type="text" class="text" value="My shiny task" readonly>
@@ -75,63 +70,9 @@
                     </div>
                 </div>
             -->
-
             </div>
         </section>
-
-
-
-
-
-
-        <!-- this page/section will be where the input form data will be pushed to (Work in progress). 
-1) should I rather have basic layout and add bootstrap later after data is pushed? 
-2) How can I keep bootstrap and reference the entire class etc when pushing the data
-3) what is the best way to nest data in a situation like this? In the course activities it was easy because the 
-HTML body was completely empty meaning anything you display on the DOM using DOM API etc will just be at the top.
-I know you can use appendChild etc. but it still feels trickier with a form like the below.
-4) Best way to append an entire task with all its info?
-        <div class="toDoList grid text-center">
-            <section class="vh-100" style="background-color: #e2d5de;">
-                <div class="container py-5 h-100">
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <div class="col col-xl-10">
-
-                            <div class="card" style="border-radius: 15px;">
-                                <div class="card-body p-5">
-
-                                    <h4 class="mb-3">Awesome Todo List</h4>
-
-                                    <ul class="list-group mb-0" id="taskUl">
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                            <div class="d-flex" id="task1Dom">
-                                                <input class="form-check-input me-2" type="checkbox" value="awe"
-                                                    aria-label="..." />
-                                            </div>
-                                            <span class="col float-right">day</span>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-
-
-
-
-
-
         </div>
-        -->
     </main>
     <footer>
     </footer>
