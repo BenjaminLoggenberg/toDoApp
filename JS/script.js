@@ -1,13 +1,13 @@
 taskText = localStorage.getItem("userData");
 console.log(JSON.parse(localStorage.getItem('userData')));
-newObj = JSON.parse(taskText);
+localStorageArray = JSON.parse(taskText);
 let taskList = document.getElementById("taskList");
 
 window.addEventListener('DOMContentLoaded', () => {
-    loadDom();
+    refreshDom();
 });
 //array to push all the tasks to
-let tasks = [];
+let tasks = localStorageArray || [];
 
 
 //THIS FUNCTION THAT IS COMMENTED OUT WAS ANOTHER ATTEMPT TO CAPTURE THE INPUT
@@ -23,12 +23,12 @@ class Task {
         this._taskdueday = taskdueday;
         this._taskId = Math.floor(Math.random() * 10000);
     }
-    get taskname() {
-        return this._taskname;
-    }
-    get taskdueday() {
-        return this._taskdueday;
-    }
+    // get taskname() {
+    //     return this._taskname;
+    // }
+    // get taskdueday() {
+    //     return this._taskdueday;
+    // }
     set taskId(idName) {
         this._taskId = idName;
     }
@@ -42,7 +42,7 @@ class Task {
 ---------------------------------------------------- */
 
 function refreshDom() {
-
+    console.log('tasks within refreshDom is', tasks);
     taskList.innerHTML = "";
 
     //Clear DOM elements when task is added
@@ -51,34 +51,10 @@ function refreshDom() {
     for (let index = 0; index < tasks.length; index++) {
         const task = tasks[index];
         taskList.innerHTML += `
-        <div class="task" id = "${task.taskId}">
-             <div class="content">
-            <input type="text" class="text taskName" value="${task.taskname}" readonly>
-            <input type="text" class="text dueDay" value="${task.taskdueday}" readonly>
-        </div>
-        <div class="actions">
-            <input class="tickTask" type="checkbox">
-            <button class="edit">EDIT</button>
-            <button class="delete">DELETE</button>
-        </div>
-    </div>
-    `
-    }
-}
-
-function loadDom() {
-
-    taskList.innerHTML = "";
-
-    //Clear DOM elements when task is added
-    //loop through tasks array and print to DOM accordingly
-    //section to take data in array and push to DOM
-    for (let index = 0; index < newObj.length; index++) {
-        const task = newObj[index];
-        taskList.innerHTML += `
-        <div class="task" id = "${task.taskId}">
+        <div class="task" id = "${task._taskId}">
              <div class="content">
             <input type="text" class="text taskName" value="${task._taskname}" readonly>
+            <input type="text" class="text dueDay" value="${task._taskdueday}" readonly>
         </div>
         <div class="actions">
             <input class="tickTask" type="checkbox">
@@ -89,13 +65,12 @@ function loadDom() {
     `
     }
 }
+
 
 
 //THIS FUNCTION IS USED TO CAPTURE INPUT DATA INTO VARIABLE
 function createTask(task) {
-    //event preventdefault to retain data without losing it
     event.preventDefault();
-
     //function section to capture input data and push to tasks array
     console.log('runningCreateTask', task)
     const taskInput = document.getElementById("taskName").value;
@@ -120,7 +95,7 @@ function addTask(task) {
     console.log(tasks);
     let myJSArr = JSON.stringify(tasks);
     localStorage.setItem("userData", myJSArr);
-    console.log('the JSON is now', myJSArr)
+    console.log('the JSON is now', myJSArr);
     refreshDom();
 
 }
@@ -136,8 +111,8 @@ function sortTasks() {
 
     //sorting
     tasks.sort((a, b) => {
-        const taskA = a.taskname.toUpperCase(); // ignore upper and lowercase
-        const taskB = b.taskname.toUpperCase(); // ignore upper and lowercase
+        const taskA = a._taskname.toUpperCase(); // ignore upper and lowercase
+        const taskB = b._taskname.toUpperCase(); // ignore upper and lowercase
         if (taskA < taskB) {
             return -1;
         }
@@ -218,13 +193,14 @@ taskList.addEventListener('click', (e) => {
         let deleteButton = e.target;
         console.log(deleteButton);
         let selectedElId = e.target.parentNode.parentNode.id;
-        let updateArray = tasks.findIndex(selectedElId);
+        tasks = tasks.filter(task => task._taskId != selectedElId);
 
-        let result = tasks.filter(e => { tasks != tasks[updateArray] });
-        console.log("tasks after filter", result);
+        //localStorage
+        localStorage.setItem("userData", JSON.stringify(tasks));
         refreshDom();
     }
 })
+
 
 // taskEditEl.addEventListener('click', () => {
 
