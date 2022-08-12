@@ -1,8 +1,10 @@
 taskText = localStorage.getItem("userData");
+console.log(JSON.parse(localStorage.getItem('userData')));
 newObj = JSON.parse(taskText);
+let taskList = document.getElementById("taskList");
 
 window.addEventListener('DOMContentLoaded', () => {
-    refreshDom();
+    loadDom();
 });
 //array to push all the tasks to
 let tasks = [];
@@ -41,7 +43,6 @@ class Task {
 
 function refreshDom() {
 
-    let taskList = document.getElementById("taskList")
     taskList.innerHTML = "";
 
     //Clear DOM elements when task is added
@@ -52,9 +53,9 @@ function refreshDom() {
         taskList.innerHTML += `
         <div class="task" id = "${task.taskId}">
              <div class="content">
-            <input type="text" class="text" value="${task.taskname}" readonly>
+            <input type="text" class="text taskName" value="${task.taskname}" readonly>
+            <input type="text" class="text dueDay" value="${task.taskdueday}" readonly>
         </div>
-        <!--Buttons to edit and delete task->
         <div class="actions">
             <input class="tickTask" type="checkbox">
             <button class="edit">EDIT</button>
@@ -63,8 +64,33 @@ function refreshDom() {
     </div>
     `
     }
-
 }
+
+function loadDom() {
+
+    taskList.innerHTML = "";
+
+    //Clear DOM elements when task is added
+    //loop through tasks array and print to DOM accordingly
+    //section to take data in array and push to DOM
+    for (let index = 0; index < newObj.length; index++) {
+        const task = newObj[index];
+        taskList.innerHTML += `
+        <div class="task" id = "${task.taskId}">
+             <div class="content">
+            <input type="text" class="text taskName" value="${task._taskname}" readonly>
+        </div>
+        <div class="actions">
+            <input class="tickTask" type="checkbox">
+            <button class="edit">EDIT</button>
+            <button class="delete">DELETE</button>
+        </div>
+    </div>
+    `
+    }
+}
+
+
 //THIS FUNCTION IS USED TO CAPTURE INPUT DATA INTO VARIABLE
 function createTask(task) {
     //event preventdefault to retain data without losing it
@@ -90,8 +116,13 @@ function createTask(task) {
 function addTask(task) {
     tasks.push(task);
     console.log("tasks are now:", tasks);
-
+    sortTasks();
+    console.log(tasks);
+    let myJSArr = JSON.stringify(tasks);
+    localStorage.setItem("userData", myJSArr);
+    console.log('the JSON is now', myJSArr)
     refreshDom();
+
 }
 //THIS FUNCTION IS USED TO TAKE THE ARRAY AND PRINT ON DOM
 // function createDomTask() {
@@ -117,7 +148,6 @@ function sortTasks() {
         return 0;
     });
 
-    refreshDom();
     console.log("tasks after sort:", tasks);
 
     //Sort array alphabetically
@@ -125,51 +155,88 @@ function sortTasks() {
     // console.log(tasks);
 }
 
-
 //JSON and save to local storage
-//making an object with tasks array inside
-let myObj = { tasksArray: tasks };
-console.log(myObj);
+
 //turning the normal tasks array into JSON
 let myJSArr = JSON.stringify(tasks);
 console.log(myJSArr);
-//turning the object with array inside to JSON
-let myJSAarr2 = JSON.stringify(myObj);
-console.log(myJSAarr2);
 
 //localStorage
 localStorage.setItem("userData", myJSArr);
 
+
+
+
 /* ----------------------------------------------------
     Event Listeners
 ---------------------------------------------------- *///Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
+//for checkbox
+taskList.addEventListener('click', (e) => {
+    if (e.target.classList.contains("tickTask")) {
+        let checkButton = e.target;
+        console.log(checkButton);
+    }
+});
+
+function loopOverNodes(node) {
+    // do some thing with the node here
+    let nodes = node.childNodes;
+    console.log(nodes)
+    for (var i = 0; i < nodes.length; i++) {
+        if (node[i].classList.contains("text")) {
+            return node[i];
+        }
+    }
+}
+taskList.addEventListener('click', (e) => {
+    if (e.target.classList.contains("edit")) {
+        let editButton = e.target;
+        let selectedElId = e.target.parentNode.parentNode.id;
+        let taskObj = document.getElementById(selectedElId);
+        console.log(taskObj);
+        taskNameText = loopOverNodes(taskObj);
+        console.log(taskNameText);
+        if (editButton.innerText.toLowerCase() == "edit") {
+            taskObj.removeAttribute("readonly");
+            taskObj.focus();
+            taskDueDateText.removeAttribute("readonly");
+            taskDueDateText.focus();
+            editButton.innerHTML = "Save";
+            //how can I make this work?
+            let updateArray = tasks.findIndex(Task);
+        } else {
+            taskObj.setAttribute("readonly", "readonly");
+            taskDueDateText.setAttribute("readonly", "readonly");
+            editButton.innerHTML = "Edit";
+        }
+        console.log(editButton);
+    }
+})
+
+taskList.addEventListener('click', (e) => {
+    if (e.target.classList.contains("delete")) {
+        let deleteButton = e.target;
+        console.log(deleteButton);
+        let selectedElId = e.target.parentNode.parentNode.id;
+        let updateArray = tasks.findIndex(selectedElId);
+
+        let result = tasks.filter(e => { tasks != tasks[updateArray] });
+        console.log("tasks after filter", result);
+        refreshDom();
+    }
+})
+
 // taskEditEl.addEventListener('click', () => {
-//     if (taskEditEl.innerText.toLowerCase() == "edit") {
-//         taskNameText.removeAttribute("readonly");
-//         taskNameText.focus();
-//         taskDueDateText.removeAttribute("readonly");
-//         taskDueDateText.focus();
-//         taskEditEl.innerHTML = "Save";
-//         //how can I make this work?
-//         let updateArray = tasks.findIndex(Task);
-//     } else {
-//         taskNameText.setAttribute("readonly", "readonly");
-//         taskDueDateText.setAttribute("readonly", "readonly");
-//         taskEditEl.innerHTML = "Edit";
-//     }
+
 // });
 
 // taskDeleteEl.addEventListener('click', () => {
-//     taskList.removeChild(domDiv);
-//     let result = tasks.filter(deleteTask => tasks != Task);
-
-//     console.log("tasks after filter", result);
 
 // });
 
-// //Strikethrough text when checkbox is clicked (Completed task)
-// taskCheckEl.addEventListener('click', () => {
-//     if (taskCheckEl.checked == true) {
+//Strikethrough text when checkbox is clicked (Completed task)
+// checkButton.addEventListener('click', () => {
+//     if (checkButton.checked == true) {
 //         domDivContent.style.textDecoration = "line-through";
 //         domDivContent2.style.textDecoration = "line-through";
 //     } else {
