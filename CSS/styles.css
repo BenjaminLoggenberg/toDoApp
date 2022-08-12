@@ -38,7 +38,6 @@ header h1 {
     font-weight: 300;
     color: var(--gray);
     margin-bottom: 1rem;
-
 }
 
 .headers {
@@ -105,6 +104,10 @@ button {
     -webkit-text-fill-color: transparent;
     cursor: pointer;
     transition: 0.4s;
+}
+
+.dueDay {
+    display: flex;
 }
 
 #submitInput:hover {
@@ -174,6 +177,8 @@ main {
 
 #taskList .task {
     display: flex;
+    flex-direction: row;
+
     justify-content: space-between;
     background-color: var(--darkest);
     padding: 1rem;
@@ -190,7 +195,8 @@ main {
     color: var(--light);
     font-size: 1.125rem;
     width: 100%;
-    display: block;
+    display: flex;
+    justify-content: space-between;
     transition: 0.4s;
 }
 

@@ -51,11 +51,11 @@ function refreshDom() {
     for (let index = 0; index < tasks.length; index++) {
         const task = tasks[index];
         taskList.innerHTML += `
-        <div class="task" id = "${task._taskId}">
+    <div class="task" id = "${task._taskId}">
              <div class="content">
             <input type="text" class="text taskName" value="${task._taskname}" readonly>
             <input type="text" class="text dueDay" value="${task._taskdueday}" readonly>
-        </div>
+            </div>
         <div class="actions">
             <input class="tickTask" type="checkbox">
             <button class="edit">EDIT</button>
@@ -73,7 +73,7 @@ function createTask(task) {
     event.preventDefault();
     //function section to capture input data and push to tasks array
     console.log('runningCreateTask', task)
-    const taskInput = document.getElementById("taskName").value;
+    let taskInput = document.getElementById("taskName").value;
 
     //conditional
     if (!taskInput) {
@@ -81,10 +81,12 @@ function createTask(task) {
         return;
     }
 
-    const dueDayInput = document.getElementById("dueDay").value;
+    let dueDayInput = document.getElementById("dueDay").value;
 
     let task1 = new Task(taskInput, dueDayInput);
     addTask(task1);
+
+
 }
 //THIS FUNCTION IS USED TO TAKE THE INPUT VARIABLE AND PUSH IT TO THE ARRAY
 
