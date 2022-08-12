@@ -101,13 +101,7 @@ function addTask(task) {
     refreshDom();
 
 }
-//THIS FUNCTION IS USED TO TAKE THE ARRAY AND PRINT ON DOM
-// function createDomTask() {
 
-//     refreshDom();
-
-
-// }
 //THIS FUNCTION IS USED TO SORT ALPHABETICALLY
 function sortTasks() {
 
@@ -149,16 +143,12 @@ localStorage.setItem("userData", myJSArr);
 ---------------------------------------------------- *///Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
 //for checkbox
 // Strikethrough text when checkbox is clicked (Completed task)
-
 taskList.addEventListener('click', (e) => {
-    if (e.target.classList.contains("tickTask")) {
-
-        let checkboxEl = e.target.parentNode.parentNode.id;
-        if (checkboxEl.checked == true) {
-            document.getElementsByClassName("content").style.textDecoration = "line-through";
-        } else {
-            document.getElementsByClassName("content").style.textDecoration = "none";
-        }
+    let checkboxEl = e.target.parentNode.parentNode.id;
+    if (e.target.classList.contains("tickTask") && checkboxEl.checked == true) {
+        e.target.closest("input").style.textDecoration = "line-through";
+    } else {
+        e.target.closest("input").style.textDecoration = "none";
     }
 });
 
