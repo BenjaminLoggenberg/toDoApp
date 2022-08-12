@@ -149,11 +149,30 @@ function sortTasks() {
     // console.log(tasks);
 }
 
+//for loop to show how many tasks have been entered
+//I need to update the array as well when bringing in LocalStorage
+for (let x = 0; x < tasks.length; x++) {
+    const element = tasks.length;
+    console.log("Amount of tasks entered:", element)
+}
 
+//JSON and save to local storage
+//making an object with tasks array inside
+let myObj = { tasksArray: tasks };
+console.log(myObj);
+//turning the normal tasks array into JSON
+let myJSArr = JSON.stringify(tasks);
+console.log(myJSArr);
+//turning the object with array inside to JSON
+let myJSAarr2 = JSON.stringify(myObj);
+console.log(myJSAarr2);
 
+//localStorage
+localStorage.setItem("userData", myJSArr);
 
-
-//Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
+/* ----------------------------------------------------
+    Event Listeners
+---------------------------------------------------- *///Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
 taskEditEl.addEventListener('click', () => {
     if (taskEditEl.innerText.toLowerCase() == "edit") {
         taskNameText.removeAttribute("readonly");
@@ -170,8 +189,6 @@ taskEditEl.addEventListener('click', () => {
     }
 });
 
-
-
 taskDeleteEl.addEventListener('click', () => {
     taskList.removeChild(domDiv);
     let result = tasks.filter(deleteTask => tasks != Task);
@@ -179,16 +196,6 @@ taskDeleteEl.addEventListener('click', () => {
     console.log("tasks after filter", result);
 
 });
-
-
-
-
-//for loop to show how many tasks have been entered
-//I need to update the array as well when bringing in LocalStorage
-for (let x = 0; x < tasks.length; x++) {
-    const element = tasks.length;
-    console.log("Amount of tasks entered:", element)
-}
 
 //Strikethrough text when checkbox is clicked (Completed task)
 taskCheckEl.addEventListener('click', () => {
@@ -200,25 +207,7 @@ taskCheckEl.addEventListener('click', () => {
         domDivContent2.style.textDecoration = "none";
     }
 })
-//JSON and save to local storage
-//making an object with tasks array inside
-let myObj = { tasksArray: tasks };
-console.log(myObj);
-//turning the normal tasks array into JSON
-let myJSArr = JSON.stringify(tasks);
-console.log(myJSArr);
-//turning the object with array inside to JSON
-let myJSAarr2 = JSON.stringify(myObj);
-console.log(myJSAarr2);
 
-//localStorage
-localStorage.setItem("userData", myJSArr);
-
-
-}
-
-
-//EVENT LISTENERS
 //below event listeners are to change the screen view
 const addToDoTabHandler = () => {
     let addToDoElements = document.querySelectorAll(".toDoEntry");
