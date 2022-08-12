@@ -148,10 +148,17 @@ localStorage.setItem("userData", myJSArr);
     Event Listeners
 ---------------------------------------------------- *///Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
 //for checkbox
+// Strikethrough text when checkbox is clicked (Completed task)
+
 taskList.addEventListener('click', (e) => {
     if (e.target.classList.contains("tickTask")) {
-        let checkButton = e.target;
-        console.log(checkButton);
+
+        let checkboxEl = e.target.parentNode.parentNode.id;
+        if (checkboxEl.checked == true) {
+            document.getElementsByClassName("content").style.textDecoration = "line-through";
+        } else {
+            document.getElementsByClassName("content").style.textDecoration = "none";
+        }
     }
 });
 
@@ -212,16 +219,6 @@ taskList.addEventListener('click', (e) => {
 
 // });
 
-//Strikethrough text when checkbox is clicked (Completed task)
-// checkButton.addEventListener('click', () => {
-//     if (checkButton.checked == true) {
-//         domDivContent.style.textDecoration = "line-through";
-//         domDivContent2.style.textDecoration = "line-through";
-//     } else {
-//         domDivContent.style.textDecoration = "none";
-//         domDivContent2.style.textDecoration = "none";
-//     }
-// })
 
 //below event listeners are to change the screen view
 const addToDoTabHandler = () => {

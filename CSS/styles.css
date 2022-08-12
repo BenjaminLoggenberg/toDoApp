@@ -170,7 +170,7 @@ main {
     display: grid;
 }
 
-.checkbox {
+.tickTask {
     appearance: auto;
 }
 
@@ -178,7 +178,6 @@ main {
 #taskList .task {
     display: flex;
     flex-direction: row;
-
     justify-content: space-between;
     background-color: var(--darkest);
     padding: 1rem;
