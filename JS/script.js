@@ -10,11 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 let tasks = localStorageArray || [];
 
 
-//THIS FUNCTION THAT IS COMMENTED OUT WAS ANOTHER ATTEMPT TO CAPTURE THE INPUT
-// function createTask(taskInput) {
-//     taskInput = document.getElementById("taskName").value;
-//     return taskInput;
-// }
+
 
 //THIS CLASS IS USED TO CAPTURE THE INPUT DATA
 class Task {
@@ -23,12 +19,12 @@ class Task {
         this._taskdueday = taskdueday;
         this._taskId = Math.floor(Math.random() * 10000);
     }
-    // get taskname() {
-    //     return this._taskname;
-    // }
-    // get taskdueday() {
-    //     return this._taskdueday;
-    // }
+    get taskname() {
+        return this._taskname;
+    }
+    get taskdueday() {
+        return this._taskdueday;
+    }
     set taskId(idName) {
         this._taskId = idName;
     }
@@ -53,8 +49,8 @@ function refreshDom() {
         taskList.innerHTML += `
     <div class="task" id = "${task._taskId}">
              <div class="content">
-            <input type="text" class="text taskName" value="${task._taskname}" readonly>
-            <input type="text" class="text dueDay" value="${task._taskdueday}" readonly>
+            <input type="text" id = "${task._taskId}" class="text taskName" value="${task._taskname}" readonly>
+            <input type="text" id = "${task._taskId}" class="text dueDay" value="${task._taskdueday}" readonly>
             </div>
         <div class="actions">
             <input class="tickTask" type="checkbox">
@@ -121,6 +117,7 @@ function sortTasks() {
 
     console.log("tasks after sort:", tasks);
 
+    //Another way to do it below
     //Sort array alphabetically
     // tasks.sort((a, b) => (a < b ? -1 : 1));
     // console.log(tasks);
@@ -140,52 +137,105 @@ localStorage.setItem("userData", myJSArr);
 
 /* ----------------------------------------------------
     Event Listeners
----------------------------------------------------- *///Is it okay to keep the below functionality here? it works.. or must I keep it outside of the function
+---------------------------------------------------- *///
 //for checkbox
 // Strikethrough text when checkbox is clicked (Completed task)
-taskList.addEventListener('click', (e) => {
-    let checkboxEl = e.target.parentNode.parentNode.id;
-    if (e.target.classList.contains("tickTask") && checkboxEl.checked == true) {
-        e.target.closest("input").style.textDecoration = "line-through";
-    } else {
-        e.target.closest("input").style.textDecoration = "none";
-    }
-});
+// taskList.addEventListener('click', (e) => {
+//     let checkboxEl = e.target.parentNode.parentNode.id;
+//     if (e.target.classList.contains("tickTask") && checkboxEl.checked == true) {
+//         e.target.closest("input").style.textDecoration = "line-through";
+//     } else {
+//         e.target.closest("input").style.textDecoration = "none";
+//     }
+// });
 
-function loopOverNodes(node) {
-    // do some thing with the node here
-    let nodes = node.childNodes;
-    console.log(nodes)
-    for (var i = 0; i < nodes.length; i++) {
-        if (node[i].classList.contains("text")) {
-            return node[i];
-        }
-    }
-}
+
 taskList.addEventListener('click', (e) => {
     if (e.target.classList.contains("edit")) {
         let editButton = e.target;
         let selectedElId = e.target.parentNode.parentNode.id;
-        let taskObj = document.getElementById(selectedElId);
-        console.log(taskObj);
-        taskNameText = loopOverNodes(taskObj);
+
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        /* ==== INFO ====
+         * Used the unique ids of the two input fields to make DOM queries and attribute manipulation easier
+        */
+
+        let taskNameText = document.getElementById(selectedElId + "TaskName");
+        let taskDueDateText = document.getElementById(selectedElId + "TaskDueDate");
+
         console.log(taskNameText);
+
+
+        taskNameText.removeAttribute("readonly");
+        taskNameText.focus();
+
+        taskDueDateText.removeAttribute("readonly");
+        taskDueDateText.focus();
+        editButton.innerHTML = "Save";
+
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UPDATED >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
         if (editButton.innerText.toLowerCase() == "edit") {
-            taskObj.removeAttribute("readonly");
-            taskObj.focus();
-            taskDueDateText.removeAttribute("readonly");
-            taskDueDateText.focus();
-            editButton.innerHTML = "Save";
+
             //how can I make this work?
-            let updateArray = tasks.findIndex(Task);
+
+            /** ---  Notes: ---
+             * 
+             * You can make this work by putting it in the else clause
+             * since that is what runs while we after we are done editing.
+             * Once done editing we can set the attributes back to read-only
+             * and then also update the object's data inside our array and
+             * localStorage
+             */
+
+            //let updateArray = tasks.findIndex(Task);
+
         } else {
-            taskObj.setAttribute("readonly", "readonly");
+
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+            // if this is 0 storage wont be updated
+            // if this get updated to 1, storage will be updated
+            let updateNeeded = 0;
+
+            tasks.forEach(task => {
+                if (task._taskId == selectedElId) { // pull task out of array if id is == id of DOM element
+                    // console.log(task);
+
+                    // Update task with data in DOM
+                    task._taskname = taskNameText.value;
+                    // Update date with data in DOM
+                    task._taskdueday = taskDueDateText.value;
+
+                    // test to see if task data was updated
+                    //console.log(task);
+                    updateNeeded = 1;
+                }
+            })
+
+            if (updateNeeded == 1) {
+
+                //turning the normal tasks array into JSON
+                let myJSArr = JSON.stringify(tasks);
+                console.log(myJSArr);
+
+                //localStorage
+                localStorage.setItem("userData", myJSArr);
+
+            }
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UPDATED >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+            taskNameText.setAttribute("readonly", "readonly");
             taskDueDateText.setAttribute("readonly", "readonly");
             editButton.innerHTML = "Edit";
         }
         console.log(editButton);
     }
 })
+
+
 
 taskList.addEventListener('click', (e) => {
     if (e.target.classList.contains("delete")) {

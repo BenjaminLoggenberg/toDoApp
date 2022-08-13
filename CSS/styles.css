@@ -184,8 +184,7 @@ main {
 
 #taskList .task {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: var(--darkest);
     padding: 1rem;
     border-radius: 1rem;
@@ -201,9 +200,9 @@ main {
     color: var(--light);
     font-size: 1.125rem;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: block;
     transition: 0.4s;
+    overflow-wrap: break-word;
 }
 
 #taskList .task .content .text:not(:read-only) {
@@ -240,7 +239,7 @@ main {
 
 .task .actions .delete {
     color: crimson;
-    /**why is this color not working?*/
+
 }
 
 
